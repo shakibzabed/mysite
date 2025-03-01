@@ -58,6 +58,14 @@
             font-weight: 600;
         }
 
+        /* Hamburger Menu for Mobile */
+        .menu-icon {
+            display: none;
+            font-size: 1.5rem;
+            color: #e0e0e0;
+            cursor: pointer;
+        }
+
         /* Hero Section */
         .hero {
             height: 100vh;
@@ -310,23 +318,67 @@
 
         /* Responsive Design */
         @media (max-width: 768px) {
+            /* Navigation */
+            .menu-icon {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                background: rgba(18, 18, 18, 0.9);
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                padding: 1rem;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links li {
+                margin: 1rem 0;
+            }
+
+            /* Hero Section */
             .hero h1 {
                 font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            /* Sections */
+            section {
+                padding: 3rem 1rem;
+                margin: 1rem;
             }
 
             .section-title {
                 font-size: 2rem;
             }
 
+            /* Skills and Projects Grid */
             .skills-container, .projects-grid {
                 grid-template-columns: 1fr;
+            }
+
+            /* Footer */
+            footer {
+                padding: 1rem;
             }
         }
     </style>
 </head>
 <body>
     <nav class="navbar">
-        <ul class="nav-links">
+        <div class="menu-icon" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </div>
+        <ul class="nav-links" id="navLinks">
             <li><a href="#home">Home</a></li>
             <li><a href="#projects">Projects</a></li>
             <li><a href="#skills">Skills</a></li>
@@ -482,6 +534,12 @@
                 backToTopButton.classList.remove('show');
             }
         });
+
+        // Hamburger Menu Toggle
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
     </script>
 </body>
 </html>
